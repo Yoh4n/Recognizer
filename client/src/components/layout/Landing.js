@@ -4,7 +4,6 @@ class Landing extends Component {
   render() {
     return (
       <main role="main">
-
         <div className="jumbotron">
           <div className="container">
             <h1 className="display-3">Hello, world!</h1>
@@ -14,8 +13,7 @@ class Landing extends Component {
               supporting pieces of content. Use it as a starting point to create
               something more unique.
             </p>
-            <p>
-            </p>
+            <p />
           </div>
         </div>
 
@@ -29,8 +27,7 @@ class Landing extends Component {
                 fermentum massa justo sit amet risus. Etiam porta sem malesuada
                 magna mollis euismod. Donec sed odio dui.{" "}
               </p>
-              <p>
-              </p>
+              <p />
             </div>
             <div className="col-md-4">
               <h2>Heading</h2>
@@ -40,8 +37,7 @@ class Landing extends Component {
                 fermentum massa justo sit amet risus. Etiam porta sem malesuada
                 magna mollis euismod. Donec sed odio dui.{" "}
               </p>
-              <p>
-              </p>
+              <p />
             </div>
 
             <div className="col-md-4">
@@ -52,10 +48,8 @@ class Landing extends Component {
                 semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
                 condimentum nibh, ut fermentum massa justo sit amet risus.
               </p>
-              <p>
-              </p>
+              <p />
             </div>
-
           </div>
           <hr />
         </div>
