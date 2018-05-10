@@ -12,82 +12,82 @@ const validateDistributorInput = require('../../validation/distributor');
 // @route   GET api/distributors/all
 // @desc    Get all distributors
 // @access  Private
-router.get('/all', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-  const errors = {}
+router.get('/all',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {}
 
-  Distributor.find()
-    .then(distributors => {
-      if(!distributors) {
-        errors.noDistributor = 'No distributors have been created'
-        return res.status(404).json(errors);
-      }
-      else {
-        res.json(distributors);
-      }
-    })
-    .catch(err => res.status(404).json(err));
-});
+    Distributor.find()
+      .then(distributors => {
+        if (!distributors) {
+          errors.noDistributor = 'No distributors have been created'
+          return res.status(404).json(errors);
+        }
+        else {
+          res.json(distributors);
+        }
+      })
+      .catch(err => res.status(404).json(err));
+  });
 
 // @route   GET api/distributors/mainpk/:mainpk
 // @desc    Get distributor by mainpk
 // @access  Private
-router.get('/mainpk/:mainpk', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-  const errors = {}
+router.get('/mainpk/:mainpk',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {}
 
-  Distributor.findOne({ mainpk: req.params.mainpk })
-    .then(distributors => {
-      if(!distributors) {
-        errors.noDistributor = 'Mainpk not found';
-        res.status(404).json(errors);
-      }
+    Distributor.findOne({ mainpk: req.params.mainpk })
+      .then(distributors => {
+        if (!distributors) {
+          errors.noDistributor = 'Mainpk not found';
+          res.status(404).json(errors);
+        }
 
-      res.json(distributors)
-    })
-    .catch(err => res.status(404).json(err));
-});
+        res.json(distributors)
+      })
+      .catch(err => res.status(404).json(err));
+  });
 
 // @route   GET api/distributors/:distName
 // @desc    Get distributor by distName
 // @access  Private
-router.get('/distName/:distName', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-  const errors = {}
+router.get('/distName/:distName',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {}
 
-  Distributor.findOne({ distName: req.params.distName })
-    .then(distributors => {
-      if(!distributors) {
-        errors.noDistributor = 'Distributor not found';
-        res.status(404).json(errors);
-      }
+    Distributor.findOne({ distName: req.params.distName })
+      .then(distributors => {
+        if (!distributors) {
+          errors.noDistributor = 'Distributor not found';
+          res.status(404).json(errors);
+        }
 
-      res.json(distributors)
-    })
-    .catch(err => res.status(404).json(err));
-});
+        res.json(distributors)
+      })
+      .catch(err => res.status(404).json(err));
+  });
 
 // @route   GET api/distributors/:id
 // @desc    Get distributor by user id
 // @access  Private
-router.get('/id/:id', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-  const errors = {}
+router.get('/id/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {}
 
-  Distributor.findOne({ _id: req.params.id })
-    .then(distributors => {
-      if(!distributors) {
-        errors.noDistributor = 'Distributor id not found';
-        res.status(404).json(errors);
-      }
-      res.json(distributors)
-    })
-    .catch(err => res.status(404).json({ distributor: 'There is no distributor with that id' }));
-});
+    Distributor.findOne({ _id: req.params.id })
+      .then(distributors => {
+        if (!distributors) {
+          errors.noDistributor = 'Distributor id not found';
+          res.status(404).json(errors);
+        }
+        res.json(distributors)
+      })
+      .catch(err => res.status(404).json({ distributor: 'There is no distributor with that id' }));
+  });
 
 // @route   POST api/distributor
 // @desc    Create or Update distributor
@@ -98,10 +98,10 @@ router.post('/',
     const { errors, isValid } = validateDistributorInput(req.body);
 
     //Check Validation
-    if(!isValid){
+    if (!isValid) {
       return res.status(400).json(errors);
     }
-    
+
     // Get fields
     const distributorFields = {};
     if (req.body.distName) distributorFields.distName = req.body.distName;
@@ -136,7 +136,7 @@ router.post('/',
     });
 
     Distributor.findOne({ mainpk: distributorFields.mainpk }).then(distributors => {
-      if(distributors) {
+      if (distributors) {
         //Update Distributor
         Distributor.findOneAndUpdate(
           { mainpk: distributorFields.mainpk },
@@ -157,13 +157,13 @@ router.post('/',
 // @route   DELETE api/distributors/:id
 // @desc    DELETE distributor by id
 // @access  Private
-router.delete('/id/:id', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-  Distributor.findByIdAndRemove({ _id: req.params.id })
-    .then(distributors => res.json(distributors))
-    .catch(err => console.log(err));
-});
+router.delete('/id/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Distributor.findByIdAndRemove({ _id: req.params.id })
+      .then(distributors => res.json(distributors))
+      .catch(err => console.log(err));
+  });
 
 
 
