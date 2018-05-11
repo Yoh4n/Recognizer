@@ -48,8 +48,8 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="card bg-light">
-        <article className="card-body mx-auto">
+      <div className="card bg-light col-sm-6 mx-auto">
+        <article className="card-body">
           <h4 className="card-title mt-3 text-center">Create Account</h4>
           <hr />
           <form noValidate onSubmit={this.onSubmit}>
@@ -137,8 +137,8 @@ class Register extends Component {
                 <div className="invalid-feedback">{errors.password2}</div>
               )}
             </div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block">
+            <div className="form-group text-center">
+              <button type="submit" className="btn btn-primary">
                 {" "}
                 Create Account{" "}
               </button>
