@@ -21,6 +21,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   };
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    };
+  };
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -48,7 +54,7 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="card bg-light col-sm-6 mx-auto">
+      <div className="card bg-light col-sm-6 mx-auto mt-4">
         <article className="card-body">
           <h4 className="card-title mt-3 text-center">Create Account</h4>
           <hr />

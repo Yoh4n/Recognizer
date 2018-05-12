@@ -20,17 +20,23 @@ class Login extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    };
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
-    }
+    };
 
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
-    }
-  }
+    };
+  };
 
   onSubmit(e) {
     e.preventDefault();
@@ -41,13 +47,13 @@ class Login extends Component {
     };
 
     this.props.loginUser(userData);
-  }
+  };
 
   render() {
     const { errors } = this.state;
 
     return (
-      <div className="card bg-light col-sm-6 mx-auto">
+      <div className="card bg-light col-sm-6 mx-auto mt-4">
         <article className="card-body ">
           <h4 className="card-title mt-3 text-center">Sign In</h4>
           <hr />
