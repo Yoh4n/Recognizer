@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   constructor() {
@@ -60,49 +61,23 @@ class Login extends Component {
 
           <form noValidate onSubmit={this.onSubmit}>
 
-            <div className="form-group input-group">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  <i className="fa fa-user" />
-                </span>
-              </div>
-              <input
-                className={classnames("form-control", {
-                  "is-invalid": errors.email
-                })}
-                type="text"
-                placeholder="Email Address"
-                name="email"
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-              {/* Error handing for email field */}
-              {errors.email && (
-                <div className="invalid-feedback">{errors.email}</div>
-              )}
-            </div>
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
 
-            <div className="form-group input-group">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  <i className="fa fa-key" />
-                </span>
-              </div>
-              <input
-                className={classnames("form-control", {
-                  "is-invalid": errors.password
-                })}
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChange}
-              />
-              {/* Error handing for password field */}
-              {errors.password && (
-                <div className="invalid-feedback">{errors.password}</div>
-              )}
-            </div>
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+            />
 
             <div className="form-group text-center">
               <button type="submit" className="btn btn-primary">
